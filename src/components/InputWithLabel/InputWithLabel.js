@@ -10,11 +10,13 @@ const InputWithLabel = ({
   multiLine,
   numberOfLines,
   inputStyle,
+  onChangeText,
 }) => {
   return (
     <View>
       <Text style={styles.label}>{label}</Text>
       <Input
+        onChangeText={onChangeText}
         placeholder={placeholder}
         multiLine={multiLine}
         numberOfLines={numberOfLines}
