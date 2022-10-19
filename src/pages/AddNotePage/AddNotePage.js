@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {View} from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 
@@ -9,9 +9,32 @@ import InputWithLabel from '../../components/InputWithLabel/InputWithLabel';
 import WhiteSpace from '../../components/WhiteSpace/WhiteSpace';
 import BasicButton from '../../components/BasicButton/BasicButton';
 
-const AddNotePage = ({navigation}) => {
+import SQLiteService from '../../services/SQLiteService';
+
+const service = new SQLiteService();
+
+const AddNotePage = ({navigation, route}) => {
+  const {fetchNotes} = route.params;
+
+  const [title, setTitle] = useState('');
+  const [description, setDescription] = useState('');
+
+  useEffect(() => {
+    service.init();
+  }, []);
+
   const navigateBack = () => {
     navigation.goBack();
+  };
+
+  const addNoteToDatabase = () => {
+    service.insert('notes', {
+      title: title,
+      description: description,
+      date: '2022-10-19',
+    });
+
+    fetchNotes();
   };
 
   return (
@@ -29,16 +52,21 @@ const AddNotePage = ({navigation}) => {
         <Title style={styles.titleContainer} text={'Add Note'} />
       </View>
       <WhiteSpace />
-      <InputWithLabel label={'Title'} placeholder={'The title of a note'} />
+      <InputWithLabel
+        onChangeText={text => setTitle(text)}
+        label={'Title'}
+        placeholder={'The title of a note'}
+      />
       <WhiteSpace />
       <InputWithLabel
+        onChangeText={text => setDescription(text)}
         label={'Description'}
         multiLine
         numberOfLines={15}
         placeholder={'Type something'}
       />
       <WhiteSpace />
-      <BasicButton text={'Create'} />
+      <BasicButton text={'Create'} onPress={addNoteToDatabase} />
     </View>
   );
 };
