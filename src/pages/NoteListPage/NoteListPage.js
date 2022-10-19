@@ -35,7 +35,7 @@ const NoteListPage = ({navigation}) => {
             </ChipBadgeButton>
             <BasicButton
               text={'Add Note'}
-              icon={'+'}
+              iconName={'add'}
               onPress={navigateAddNotePage}
             />
           </View>
