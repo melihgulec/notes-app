@@ -6,7 +6,6 @@ export default StyleSheet.create({
   },
   container: {
     paddingVertical: 18,
-    backgroundColor: '#eee',
   },
   header: {
     flexDirection: 'row',
@@ -14,5 +13,14 @@ export default StyleSheet.create({
   },
   listContainer: {
     paddingHorizontal: 18,
+  },
+  emptyListContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  emptyListText: {
+    textAlign: 'center',
+    fontWeight: 'bold',
   },
 });
