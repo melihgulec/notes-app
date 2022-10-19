@@ -14,7 +14,6 @@ const Router = () => {
     <NavigationContainer>
       <Stack.Navigator
         screenOptions={{
-          headerShadowVisible: false,
           title: '',
           headerLeft: () => <HeaderLeft />,
           headerRight: () => <HeaderRight />,
