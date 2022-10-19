@@ -3,8 +3,8 @@ import {Text} from 'react-native';
 
 import styles from './Title.style';
 
-const Title = ({text}) => {
-  return <Text style={styles.text}>{text}</Text>;
+const Title = ({text, style}) => {
+  return <Text style={[styles.text, style]}>{text}</Text>;
 };
 
 export default Title;
