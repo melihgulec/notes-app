@@ -20,6 +20,7 @@ const AddNotePage = ({navigation}) => {
         <Icon.Button
           name={'arrow-back'}
           style={styles.iconBtn}
+          underlayColor={'transparent'}
           onPress={navigateBack}
           backgroundColor={'transparent'}
           color={Colors.black}
