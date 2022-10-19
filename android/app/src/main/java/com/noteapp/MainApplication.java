@@ -12,6 +12,7 @@ import com.facebook.soloader.SoLoader;
 import com.noteapp.newarchitecture.MainApplicationReactNativeHost;
 import java.lang.reflect.InvocationTargetException;
 import java.util.List;
+import org.pgsqlite.SQLitePluginPackage; 
 
 public class MainApplication extends Application implements ReactApplication {
 
