@@ -9,11 +9,11 @@ const InputWithLabel = ({
   placeholder,
   multiLine,
   numberOfLines,
-  inputStyle,
+  style,
   onChangeText,
 }) => {
   return (
-    <View>
+    <View style={style}>
       <Text style={styles.label}>{label}</Text>
       <Input
         onChangeText={onChangeText}
