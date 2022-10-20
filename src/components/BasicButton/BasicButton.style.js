@@ -20,7 +20,7 @@ export default StyleSheet.create({
   },
   text: {
     color: Colors.white,
-    fontWeight: 'bold',
     textAlign: 'center',
+    fontFamily: 'Montserrat-SemiBold'
   },
 });
