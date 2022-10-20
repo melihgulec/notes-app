@@ -7,7 +7,6 @@ import NoteCard from '../../components/NoteCard/NoteCard';
 import Title from '../../components/Title/Title';
 import WhiteSpace from '../../components/WhiteSpace/WhiteSpace';
 import styles from './NoteListPage.style';
-import data from '../../data/noteData';
 import Icon from 'react-native-vector-icons/Ionicons';
 
 import SQLiteService from '../../services/SQLiteService';
@@ -50,13 +49,22 @@ const NoteListPage = ({navigation}) => {
   };
 
   const renderNoteCards = item => {
-    return <NoteCard note={item.item} />;
+    return (
+      <NoteCard
+        note={item.item}
+        onPress={() => navigateNoteDetailPage(item.item)}
+      />
+    );
   };
 
   const navigateAddNotePage = () => {
     navigation.push('AddNotePage', {
       fetchNotes: fetchNotes,
     });
+  };
+
+  const navigateNoteDetailPage = note => {
+    navigation.push('NoteDetailPage', {note, fetchNotes});
   };
 
   return (
@@ -84,7 +92,7 @@ const NoteListPage = ({navigation}) => {
       ListFooterComponent={() => <WhiteSpace />}
       ListEmptyComponent={() => (
         <View syle={styles.emptyListContainer}>
-          <Text style={styles.emptyListText}>List is empty. Go add note!</Text>
+          <Text style={styles.emptyListText}>Go add note!</Text>
         </View>
       )}
     />
