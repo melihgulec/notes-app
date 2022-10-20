@@ -21,16 +21,17 @@ export default StyleSheet.create({
     padding: 12,
   },
   titleText: {
-    fontWeight: 'bold',
     fontSize: TextSizes.big,
     color: Colors.black,
     marginBottom: 5,
+    fontFamily: 'Montserrat-SemiBold',
   },
   description: {
     lineHeight: 22,
+    fontFamily: 'Montserrat-Medium',
   },
   dateText: {
-    fontWeight: 'bold',
+    fontFamily: 'Montserrat-SemiBold',
     paddingLeft: 8,
   },
   dateContainer: {

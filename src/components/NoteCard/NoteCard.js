@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Text} from 'react-native';
+import {View, Text, Pressable} from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 
 import {
@@ -10,10 +10,11 @@ import {
 } from 'react-native-popup-menu';
 
 import styles from './NoteCard.style';
+import Title from '../Title/Title';
 
-const NoteCard = ({note}) => {
+const NoteCard = ({note, onPress}) => {
   return (
-    <View style={styles.container}>
+    <Pressable style={styles.container} onPress={onPress}>
       <View style={styles.header}>
         <View style={styles.dateContainer}>
           <Icon name="calendar-sharp" size={15} />
@@ -32,9 +33,11 @@ const NoteCard = ({note}) => {
       </View>
       <View style={styles.contentContainer}>
         <Text style={styles.titleText}>{note.title}</Text>
-        <Text style={styles.description}>{note.description}</Text>
+        <Text numberOfLines={7} style={styles.description}>
+          {note.description}
+        </Text>
       </View>
-    </View>
+    </Pressable>
   );
 };
 
