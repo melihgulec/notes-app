@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {View} from 'react-native';
+import {View, LogBox} from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 
 import Colors from '../../constants/Colors';
@@ -11,6 +11,10 @@ import BasicButton from '../../components/BasicButton/BasicButton';
 
 import SQLiteService from '../../services/SQLiteService';
 
+LogBox.ignoreLogs([
+  'Non-serializable values were found in the navigation state',
+]);
+
 const service = new SQLiteService();
 
 const AddNotePage = ({navigation, route}) => {
@@ -18,10 +22,6 @@ const AddNotePage = ({navigation, route}) => {
 
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
-
-  useEffect(() => {
-    service.init();
-  }, []);
 
   const navigateBack = () => {
     navigation.goBack();
@@ -35,6 +35,18 @@ const AddNotePage = ({navigation, route}) => {
     });
 
     fetchNotes();
+    navigateDetailPage();
+  };
+
+  const navigateDetailPage = () => {
+    navigation.pop();
+    navigation.push('NoteDetailPage', {
+      note: {
+        title: title,
+        description: description,
+        date: Date.now(),
+      },
+    });
   };
 
   return (
@@ -59,6 +71,7 @@ const AddNotePage = ({navigation, route}) => {
       />
       <WhiteSpace />
       <InputWithLabel
+        style={{flex: 1, marginBottom: 25}}
         onChangeText={text => setDescription(text)}
         label={'Description'}
         multiLine
