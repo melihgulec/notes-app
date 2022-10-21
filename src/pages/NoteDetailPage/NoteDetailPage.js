@@ -7,7 +7,7 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import Colors from '../../constants/Colors';
 
 import SQLiteService from '../../services/SQLiteService';
-import DetailBottomBar from '../../components/DetailBottomBar/DetailBottomBar';
+import BottomBar from '../../components/BottomBar/BottomBar';
 
 var service = new SQLiteService();
 
@@ -50,6 +50,7 @@ const NoteDetailPage = ({route, navigation}) => {
       ),
     });
   };
+
   return (
     <View style={styles.container}>
       <ScrollView style={styles.scroll}>
@@ -66,7 +67,7 @@ const NoteDetailPage = ({route, navigation}) => {
           onChangeText={text => setDescription(text)}
         />
       </ScrollView>
-      <DetailBottomBar />
+      <BottomBar />
     </View>
   );
 };
