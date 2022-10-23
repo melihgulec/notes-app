@@ -10,6 +10,7 @@ export default StyleSheet.create({
   item: {
     alignItems: 'center',
     justifyContent: 'center',
+    flex: 1,
   },
   text: {
     fontSize: 12
