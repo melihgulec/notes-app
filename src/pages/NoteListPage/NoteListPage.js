@@ -1,14 +1,15 @@
 import React, {useState, useEffect} from 'react';
 import {View, FlatList, Text} from 'react-native';
+
+import Icon from 'react-native-vector-icons/Ionicons';
+import Lottie from 'lottie-react-native';
+
 import BasicButton from '../../components/BasicButton/BasicButton';
 import ChipBadgeButton from '../../components/ChipBadgeButton/ChipBadgeButton';
 import NoteCard from '../../components/NoteCard/NoteCard';
-
 import Title from '../../components/Title/Title';
 import WhiteSpace from '../../components/WhiteSpace/WhiteSpace';
 import styles from './NoteListPage.style';
-import Icon from 'react-native-vector-icons/Ionicons';
-
 import SQLiteService from '../../services/SQLiteService';
 
 var service = new SQLiteService();
@@ -17,29 +18,6 @@ const NoteListPage = ({navigation}) => {
   const [notes, setNotes] = useState([]);
 
   useEffect(() => {
-    service.init();
-
-    service.createTable('notes', [
-      {
-        name: 'id',
-        dataType: 'integer',
-        isNotNull: true,
-        options: 'PRIMARY KEY AUTOINCREMENT',
-      },
-      {
-        name: 'title',
-        dataType: 'text',
-      },
-      {
-        name: 'description',
-        dataType: 'text',
-      },
-      {
-        name: 'date',
-        dataType: 'date',
-      },
-    ]);
-
     fetchNotes();
   }, []);
 
@@ -69,6 +47,7 @@ const NoteListPage = ({navigation}) => {
 
   return (
     <FlatList
+      contentContainerStyle={styles.contentContainer}
       style={styles.listContainer}
       data={notes}
       renderItem={renderNoteCards}
@@ -91,8 +70,16 @@ const NoteListPage = ({navigation}) => {
       )}
       ListFooterComponent={() => <WhiteSpace />}
       ListEmptyComponent={() => (
-        <View syle={styles.emptyListContainer}>
-          <Text style={styles.emptyListText}>Go add note!</Text>
+        <View style={styles.emptyListContainer}>
+          <Lottie
+            source={require('../../../assets/animations/Empty/empty.json')}
+            style={styles.lottieView}
+            autoPlay
+            loop
+          />
+          <Text style={styles.emptyListText}>
+            It's empty here.{'\n'}Go and add some notes.
+          </Text>
         </View>
       )}
     />
