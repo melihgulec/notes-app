@@ -8,6 +8,7 @@ import Title from '../../components/Title/Title';
 import InputWithLabel from '../../components/InputWithLabel/InputWithLabel';
 import WhiteSpace from '../../components/WhiteSpace/WhiteSpace';
 import BasicButton from '../../components/BasicButton/BasicButton';
+import PushNotification from 'react-native-push-notification';
 
 import SQLiteService from '../../services/SQLiteService';
 
@@ -32,6 +33,7 @@ const AddNotePage = ({navigation, route}) => {
       title: title,
       description: description,
       date: '2022-10-19',
+      favorite: 0,
     });
 
     fetchNotes();
@@ -46,6 +48,7 @@ const AddNotePage = ({navigation, route}) => {
         description: description,
         date: Date.now(),
       },
+      fetchNotes: fetchNotes,
     });
   };
 

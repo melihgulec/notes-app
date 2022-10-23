@@ -7,6 +7,7 @@ import HeaderLeft from './components/Header/HeaderLeft/HeaderLeft';
 import HeaderRight from './components/Header/HeaderRight/HeaderRight';
 import AddNotePage from './pages/AddNotePage/AddNotePage';
 import NoteDetailPage from './pages/NoteDetailPage/NoteDetailPage';
+import HomePage from './pages/HomePage/HomePage';
 
 const Stack = createNativeStackNavigator();
 
@@ -19,6 +20,7 @@ const Router = () => {
           headerLeft: () => <HeaderLeft />,
           headerRight: () => <HeaderRight />,
         }}>
+        <Stack.Screen name="HomePage" component={HomePage} />
         <Stack.Screen name="NoteListPage" component={NoteList} />
         <Stack.Screen name="AddNotePage" component={AddNotePage} />
         <Stack.Screen name="NoteDetailPage" component={NoteDetailPage} />
