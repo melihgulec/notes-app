@@ -256,6 +256,7 @@ dependencies {
     implementation "com.facebook.react:react-native:+"  // From node_modules
     implementation project(':react-native-vector-icons')
     implementation project(':react-native-sqlite-storage') //Yeni Eklenen
+    implementation project(':react-native-push-notification')
 
     implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.0.0"
 
