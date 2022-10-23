@@ -10,7 +10,6 @@ import {
 } from 'react-native-popup-menu';
 
 import styles from './NoteCard.style';
-import Title from '../Title/Title';
 
 const NoteCard = ({note, onPress}) => {
   return (
@@ -20,16 +19,23 @@ const NoteCard = ({note, onPress}) => {
           <Icon name="calendar-sharp" size={15} />
           <Text style={styles.dateText}>{note.date}</Text>
         </View>
-        <Menu>
-          <MenuTrigger
-            children={<Icon name={'ellipsis-horizontal'} size={15} />}
+        <View style={styles.interactionContainer}>
+          <Icon
+            name={note.favorite === 1 ? 'heart-sharp' : 'heart-outline'}
+            size={18}
+            style={styles.favIcon}
           />
-          <MenuOptions>
-            <MenuOption onSelect={() => alert(`Delete`)}>
-              <Text style={{color: 'red'}}>Delete</Text>
-            </MenuOption>
-          </MenuOptions>
-        </Menu>
+          <Menu>
+            <MenuTrigger
+              children={<Icon name={'ellipsis-horizontal'} size={15} />}
+            />
+            <MenuOptions>
+              <MenuOption onSelect={() => alert(`Delete`)}>
+                <Text style={{color: 'red'}}>Delete</Text>
+              </MenuOption>
+            </MenuOptions>
+          </Menu>
+        </View>
       </View>
       <View style={styles.contentContainer}>
         <Text style={styles.titleText}>{note.title}</Text>

@@ -24,19 +24,26 @@ export default StyleSheet.create({
     fontSize: TextSizes.big,
     color: Colors.black,
     marginBottom: 5,
-    fontFamily: 'Montserrat-SemiBold',
+    fontWeight: 'bold',
   },
   description: {
     lineHeight: 22,
-    fontFamily: 'Montserrat-Medium',
+    fontSize: 15,
+    color: Colors.black,
   },
   dateText: {
-    fontFamily: 'Montserrat-SemiBold',
+    color: Colors.black,
     paddingLeft: 8,
   },
   dateContainer: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  interactionContainer: {
+    flexDirection: 'row',
+  },
+  favIcon: {
+    paddingRight: 10,
   },
 });
