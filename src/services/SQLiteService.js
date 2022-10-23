@@ -12,6 +12,49 @@ export default class SQLiteService {
       id: 'example',
       dbObject: SQLite,
     });
+
+    this.createTables();
+  }
+
+  async createTables() {
+    console.log('creatTables');
+    this.createTable('notes', [
+      {
+        name: 'id',
+        dataType: 'integer',
+        isNotNull: true,
+        options: 'PRIMARY KEY AUTOINCREMENT',
+      },
+      {
+        name: 'title',
+        dataType: 'text',
+      },
+      {
+        name: 'description',
+        dataType: 'text',
+      },
+      {
+        name: 'date',
+        dataType: 'date',
+      },
+      {
+        name: 'favorite',
+        dataType: 'integer',
+      },
+    ]);
+
+    this.createTable('categories', [
+      {
+        name: 'id',
+        dataType: 'integer',
+        isNotNull: true,
+        options: 'PRIMARY KEY AUTOINCREMENT',
+      },
+      {
+        name: 'description',
+        dataType: 'text',
+      },
+    ]);
   }
 
   /**
