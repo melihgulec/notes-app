@@ -7,6 +7,6 @@ export default StyleSheet.create({
   text: {
     fontSize: TextSizes.large,
     color: Colors.black,
-    fontFamily: 'Montserrat-SemiBold',
+    fontWeight: 'bold',
   },
 });

@@ -4,6 +4,7 @@ import Colors from '../../constants/Colors';
 export default StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: Colors.grey,
   },
   scroll: {
     padding: 18,
@@ -12,7 +13,6 @@ export default StyleSheet.create({
     marginTop: 5,
     fontSize: 12,
     color: Colors.black,
-    fontFamily: 'Montserrat-Regular',
   },
   descriptionText: {
     padding: 0,
@@ -21,14 +21,16 @@ export default StyleSheet.create({
     color: Colors.black,
     lineHeight: 25,
     textAlignVertical: 'top',
-    fontFamily: 'Montserrat-Medium',
   },
   descriptionContainer: {
     marginTop: 25,
-    flex: 1,
   },
   headerSaveIcon: {
     padding: 0,
     margin: 0,
+  },
+  infoContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
   },
 });

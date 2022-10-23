@@ -5,9 +5,9 @@ import Icon from 'react-native-vector-icons/Ionicons';
 
 import styles from './BasicButton.style';
 
-const BasicButton = ({text, iconName, onPress, children}) => {
+const BasicButton = ({text, iconName, onPress, children, style}) => {
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, style]}>
       <Pressable
         style={styles.button}
         android_ripple={{color: Colors.black, borderless: false}}

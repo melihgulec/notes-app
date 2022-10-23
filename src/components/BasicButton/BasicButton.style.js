@@ -21,6 +21,6 @@ export default StyleSheet.create({
   text: {
     color: Colors.white,
     textAlign: 'center',
-    fontFamily: 'Montserrat-SemiBold'
+    fontWeight: 'bold',
   },
 });
