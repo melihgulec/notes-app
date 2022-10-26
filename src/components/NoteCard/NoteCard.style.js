@@ -45,5 +45,6 @@ export default StyleSheet.create({
   },
   favIcon: {
     paddingRight: 10,
+    color: Colors.black,
   },
 });

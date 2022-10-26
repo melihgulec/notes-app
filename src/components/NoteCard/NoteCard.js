@@ -10,13 +10,14 @@ import {
 } from 'react-native-popup-menu';
 
 import styles from './NoteCard.style';
+import Colors from '../../constants/Colors';
 
 const NoteCard = ({note, onPress}) => {
   return (
     <Pressable style={styles.container} onPress={onPress}>
       <View style={styles.header}>
         <View style={styles.dateContainer}>
-          <Icon name="calendar-sharp" size={15} />
+          <Icon name="calendar-sharp" size={15} color={Colors.black} />
           <Text style={styles.dateText}>{note.date}</Text>
         </View>
         <View style={styles.interactionContainer}>
@@ -27,7 +28,13 @@ const NoteCard = ({note, onPress}) => {
           />
           <Menu>
             <MenuTrigger
-              children={<Icon name={'ellipsis-horizontal'} size={15} />}
+              children={
+                <Icon
+                  name={'ellipsis-horizontal'}
+                  size={15}
+                  color={Colors.black}
+                />
+              }
             />
             <MenuOptions>
               <MenuOption onSelect={() => alert(`Delete`)}>
