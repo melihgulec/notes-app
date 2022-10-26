@@ -11,6 +11,7 @@ import Title from '../../components/Title/Title';
 import WhiteSpace from '../../components/WhiteSpace/WhiteSpace';
 import styles from './NoteListPage.style';
 import SQLiteService from '../../services/SQLiteService';
+import Colors from '../../constants/Colors';
 
 var service = new SQLiteService();
 
@@ -58,7 +59,7 @@ const NoteListPage = ({navigation}) => {
           <WhiteSpace />
           <View style={styles.header}>
             <ChipBadgeButton>
-              <Icon name={'filter'} size={15} />
+              <Icon name={'filter'} size={15} color={Colors.black}/>
             </ChipBadgeButton>
             <BasicButton
               text={'Add Note'}
