@@ -6,19 +6,41 @@ import BasicButton from '../BasicButton/BasicButton';
 import WhiteSpace from '../WhiteSpace/WhiteSpace';
 import ClickableCard from '../ClickableCard/ClickableCard';
 import DateTimePicker from '@react-native-community/datetimepicker';
+import {createLocalNotificationSchedule} from '../../services/NotificationService';
 
 import styles from './ReminderDialog.style';
+import moment from 'moment/moment';
+import PushNotification from 'react-native-push-notification';
 
 const ReminderDialog = ({visibility, setVisibility}) => {
   const [date, setDate] = useState(new Date());
   const [mode, setMode] = useState('date');
   const [showDatePicker, setShowDatePicker] = useState(false);
+  const [datePlaceholder, setDatePlaceholder] = useState('Select date');
+  const [timePlaceholder, setTimePlaceholder] = useState('Select time');
 
   const onDateChange = (event, selectedDate) => {
     setShowDatePicker(false);
 
     const currentDate = selectedDate || date;
     setDate(currentDate);
+
+    if (mode === 'date') {
+      let formattedDate = moment(currentDate).format('DD ddd, YYYY');
+      setDatePlaceholder(formattedDate);
+    } else if (mode === 'time') {
+      let formattedDate = moment(currentDate).format('HH:mm');
+      setTimePlaceholder(formattedDate);
+    }
+  };
+
+  const onOkPress = () => {
+    console.log(date);
+    createLocalNotificationSchedule('Zamanlanmış bildirim', 'İçerik', date);
+
+    PushNotification.getScheduledLocalNotifications(cb => {
+      console.log(cb);
+    });
   };
 
   return (
@@ -34,7 +56,7 @@ const ReminderDialog = ({visibility, setVisibility}) => {
               <ClickableCard
                 iconName={'calendar-outline'}
                 textContainerStyle={styles.clickableCardTextContainer}
-                text={'Select date'}
+                text={datePlaceholder}
                 isPlaceholder
                 onPress={() => {
                   setMode('date');
@@ -45,7 +67,7 @@ const ReminderDialog = ({visibility, setVisibility}) => {
               <ClickableCard
                 iconName={'alarm-outline'}
                 isPlaceholder
-                text={'Select time'}
+                text={timePlaceholder}
                 textContainerStyle={styles.clickableCardTextContainer}
                 onPress={() => {
                   setMode('time');
@@ -65,6 +87,7 @@ const ReminderDialog = ({visibility, setVisibility}) => {
             <View style={styles.buttonsContainer}>
               <BasicButton
                 text={'OK'}
+                onPress={onOkPress}
                 style={[styles.button, styles.okButton]}
               />
               <WhiteSpace horizontal />
