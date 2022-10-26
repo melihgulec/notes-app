@@ -4,7 +4,7 @@ import Colors from '../../constants/Colors';
 export default StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: Colors.grey
+    backgroundColor: Colors.grey,
   },
   tabContainer: {
     flex: 1,
@@ -22,6 +22,7 @@ export default StyleSheet.create({
     fontSize: 15,
     textAlign: 'center',
     textAlignVertical: 'center',
+    color: Colors.black,
   },
   tabContents: {
     marginTop: 15,
@@ -31,6 +32,7 @@ export default StyleSheet.create({
     borderBottomColor: 'blue',
   },
   activeTabText: {
+    fontWeight: 'bold',
     color: 'black',
   },
 });
