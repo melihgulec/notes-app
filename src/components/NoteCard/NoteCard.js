@@ -11,6 +11,7 @@ import {
 
 import styles from './NoteCard.style';
 import Colors from '../../constants/Colors';
+import moment from 'moment/moment';
 
 const NoteCard = ({note, onPress}) => {
   return (
@@ -18,7 +19,9 @@ const NoteCard = ({note, onPress}) => {
       <View style={styles.header}>
         <View style={styles.dateContainer}>
           <Icon name="calendar-sharp" size={15} color={Colors.black} />
-          <Text style={styles.dateText}>{note.date}</Text>
+          <Text style={styles.dateText}>
+            {moment(note.date).format('DD MMM, YYYY')}
+          </Text>
         </View>
         <View style={styles.interactionContainer}>
           <Icon
