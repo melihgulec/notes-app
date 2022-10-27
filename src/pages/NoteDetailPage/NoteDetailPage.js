@@ -1,5 +1,11 @@
-import React, {useEffect, useRef, useState} from 'react';
-import {View, Text, TextInput, ScrollView} from 'react-native';
+import React, {
+  useCallback,
+  useEffect,
+  useLayoutEffect,
+  useRef,
+  useState,
+} from 'react';
+import {View, Text, TextInput, ScrollView, Button} from 'react-native';
 
 import Title from '../../components/Title/Title';
 import styles from './NoteDetailPage.style';
@@ -18,6 +24,7 @@ import SQLiteService from '../../services/SQLiteService';
 import {createLocalNotificationSchedule} from '../../services/NotificationService';
 import ClickableCard from '../../components/ClickableCard/ClickableCard';
 import CategoryDialog from '../../components/CategoryDialog/CategoryDialog';
+import moment from 'moment';
 
 var service = new SQLiteService();
 
@@ -27,21 +34,17 @@ const NoteDetailPage = ({route, navigation}) => {
   const [description, setDescription] = useState(note.description);
   const [reminderVisibility, setReminderVisibility] = useState(false);
   const [categoriesVisibility, setCategoriesVisibility] = useState(false);
+  const [focused, setFocused] = useState(false);
 
   const descriptionRef = useRef();
   const popupMenuRef = useRef();
 
   useEffect(() => {
     headerRight();
-
-    /*createLocalNotificationSchedule(
-      'Zamanlanmış bildirim',
-      'İçerik',
-      new Date(Date.now() + 5 * 1000),
-    );*/
   }, []);
 
-  const saveNote = () => {
+  const saveNote = useCallback(() => {
+    setFocused(false);
     descriptionRef.current.blur();
 
     service.update(
@@ -56,25 +59,27 @@ const NoteDetailPage = ({route, navigation}) => {
     );
 
     fetchNotes();
-  };
+  }, [title, description, fetchNotes, note.id]);
 
-  const onFocus = () => {
-    navigation.setOptions({
-      headerRight: () => (
-        <Icon.Button
-          backgroundColor={'transparent'}
-          underlayColor={'transparent'}
-          color={Colors.mainBlueC}
-          size={33}
-          style={styles.headerSaveIcon}
-          name={'checkmark'}
-          onPress={saveNote}
-        />
-      ),
-    });
-  };
+  useLayoutEffect(() => {
+    focused
+      ? navigation.setOptions({
+          headerRight: () => (
+            <Icon.Button
+              backgroundColor={'transparent'}
+              underlayColor={'transparent'}
+              color={Colors.mainBlueC}
+              size={33}
+              style={styles.headerSaveIcon}
+              name={'checkmark'}
+              onPress={saveNote}
+            />
+          ),
+        })
+      : headerRight();
+  }, [navigation, saveNote, focused, headerRight]);
 
-  const headerRight = () => {
+  const headerRight = useCallback(() => {
     navigation.setOptions({
       headerRight: () => (
         <View style={{flexDirection: 'row', alignItems: 'center'}}>
@@ -107,19 +112,23 @@ const NoteDetailPage = ({route, navigation}) => {
         </View>
       ),
     });
-  };
+  }, [navigation]);
 
   return (
     <View style={styles.container}>
       <ScrollView style={styles.scroll}>
-        <TextInput onFocus={onFocus} onChangeText={text => setTitle(text)}>
+        <TextInput
+          onFocus={() => setFocused(true)}
+          onChangeText={text => setTitle(text)}>
           <Title text={title} />
         </TextInput>
-        <Text style={styles.dateText}>{note.date}</Text>
+        <Text style={styles.dateText}>
+          {moment(note.date).format('DD MMM, YYYY')}
+        </Text>
         <TextInput
           ref={descriptionRef}
           value={description}
-          onFocus={onFocus}
+          onFocus={() => setFocused(true)}
           style={styles.descriptionText}
           multiline
           onChangeText={text => setDescription(text)}
