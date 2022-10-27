@@ -257,6 +257,7 @@ dependencies {
     implementation project(':react-native-vector-icons')
     implementation project(':react-native-sqlite-storage') //Yeni Eklenen
     implementation project(':react-native-push-notification')
+    implementation 'com.google.firebase:firebase-core:16.0.0'
 
     implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.0.0"
 
