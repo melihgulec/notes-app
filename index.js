@@ -61,7 +61,7 @@ const ConfigureNotificationService = async () => {
      * - if you are not using remote notification or do not have Firebase installed, use this:
      *     requestPermissions: Platform.OS === 'ios'
      */
-    requestPermissions: Platform.OS === 'ios',
+    requestPermissions: false,
   });
 
   await PushNotification.channelExists('1', async function (exists) {
