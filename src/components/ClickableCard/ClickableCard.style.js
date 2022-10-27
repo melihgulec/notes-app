@@ -9,6 +9,7 @@ export default StyleSheet.create({
   },
   icon: {
     paddingRight: 15,
+    color: Colors.black,
   },
   textContainer: {
     flex: 1,

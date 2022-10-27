@@ -48,20 +48,21 @@ const BottomBar = ({note, navigation, fetchNotes}) => {
   return (
     <View style={styles.container}>
       <Pressable style={styles.item} android_ripple>
-        <Icon name={'share-social-outline'} size={18} />
+        <Icon name={'share-social-outline'} size={18} style={styles.icon} />
         <Text style={styles.text}>Paylaş</Text>
       </Pressable>
       <Pressable
         style={styles.item}
         onPress={() => setShowPopup(true)}
         android_ripple>
-        <Icon name={'trash-bin-outline'} size={18} />
+        <Icon name={'trash-bin-outline'} size={18} style={styles.icon} />
         <Text style={styles.text}>Sil</Text>
       </Pressable>
       <Pressable style={styles.item} android_ripple onPress={favoriteButton}>
         <Icon
           name={favorite === 1 ? 'heart-sharp' : 'heart-outline'}
           size={18}
+          style={styles.icon}
         />
         <Text style={styles.text}>Favoriler</Text>
       </Pressable>

@@ -1,4 +1,5 @@
 import {StyleSheet} from 'react-native';
+import Colors from '../../constants/Colors';
 
 export default StyleSheet.create({
   container: {
@@ -13,6 +14,10 @@ export default StyleSheet.create({
     flex: 1,
   },
   text: {
-    fontSize: 12
-  }
+    fontSize: 12,
+    color: Colors.black,
+  },
+  icon: {
+    color: Colors.black,
+  },
 });
